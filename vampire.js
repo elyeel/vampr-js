@@ -45,17 +45,37 @@ class Vampire {
 
   // Returns the vampire object with that name, or null if no vampire exists with that name
   vampireWithName(name) {
-    
+    let vampName = null;
+    if (this.name === name) {
+      return this;
+    } 
+    for (let offspr of this.offspring) {
+      if (offspr.vampireWithName(name)) {
+        return offspr.vampireWithName(name);
+      }
+    }
+    return null;
   }
 
   // Returns the total number of vampires that exist
   get totalDescendents() {
-    
+    let total = 0;
+      for (let offspr of this.offspring) {
+        total += offspr.totalDescendents + 1;
+      }
+    return total;
   }
 
   // Returns an array of all the vampires that were converted after 1980
   get allMillennialVampires() {
-    
+    let total = [];
+    if (this.yearConverted >= 1980) {
+      total.push(this);
+    }
+    for (let offspr of this.offspring) {
+      total = total.concat(offspr.allMillennialVampires);
+    }
+    return total;
   }
 
   /** Stretch **/
@@ -70,18 +90,22 @@ class Vampire {
   }
 }
 
-const rootVampire = new Vampire("root");
-const offspring1 = new Vampire();
-const offspring2 = new Vampire();
-const offspring3 = new Vampire();
-const offspring4 = new Vampire();
+// let rootVampire;
+// let offspring1, offspring2, offspring3, offspring4, offspring5;
+// rootVampire = new Vampire("root");
+// offspring1 = new Vampire("andrew");
+// offspring2 = new Vampire("sarah");
+// offspring3 = new Vampire("c");
+// offspring4 = new Vampire("d");
+// offspring5 = new Vampire("e");
+// rootVampire.addOffspring(offspring1);
+// offspring1.addOffspring(offspring2);
+// rootVampire.addOffspring(offspring3);
+// offspring3.addOffspring(offspring4);
+// offspring4.addOffspring(offspring5);
 
-rootVampire.addOffspring(offspring1);
-rootVampire.addOffspring(offspring2);
-rootVampire.addOffspring(offspring3);
-offspring3.addOffspring(offspring4);
+// console.log(rootVampire.vampireWithName("d"));
 
-console.log(rootVampire.isMoreSeniorThan(offspring1));
 
 module.exports = Vampire;
 
