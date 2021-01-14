@@ -31,7 +31,11 @@ class Vampire {
   }
 
   // Returns true if this vampire is more senior than the other vampire. (Who is closer to the original vampire)
-  isMoreSeniorThan(vampire) {}
+  isMoreSeniorThan(vampire) {
+    const currVampireDistance = this.numberOfVampiresFromOriginal;
+    const vampireDistance = vampire.numberOfVampiresFromOriginal;
+    return currVampireDistance < vampireDistance ? true : false;
+  }
 
   /** Stretch **/
 
