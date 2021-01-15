@@ -1,17 +1,15 @@
-const chai = require('chai');
+const chai = require("chai");
 const expect = chai.expect;
 
-const Vampire = require('../vampire.js');
+const Vampire = require("../vampire.js");
 
-describe("Vampire", function() {
-
+describe("Vampire", function () {
   let rootVampire;
-  beforeEach( function() {
+  beforeEach(function () {
     rootVampire = new Vampire("root");
   });
 
   describe("numberOfVampiresFromOriginal", () => {
-
     let offspring1, offspring2, offspring3, offspring4;
     beforeEach(() => {
       offspring1 = new Vampire();
@@ -30,14 +28,17 @@ describe("Vampire", function() {
     });
 
     it("offspring 1 should be 1 from original", () => {
+      // console.log(offspring1);
       expect(offspring1.numberOfVampiresFromOriginal).to.equal(1);
     });
 
     it("offspring 2 should be 2 from original", () => {
+      // console.log(offspring2.creator);
       expect(offspring2.numberOfVampiresFromOriginal).to.equal(2);
     });
 
     it("offspring 4 should be 4 from original", () => {
+      // console.log(offspring3);
       expect(offspring4.numberOfVampiresFromOriginal).to.equal(4);
     });
   });
